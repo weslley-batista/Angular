@@ -9,10 +9,11 @@
   </li> <!--*ng inicia uma confição (For, If)-->
 </ul>
 
-<form>
+<form [formGroup]="form">
   <fieldset>
     <label> Tarefa </label>
-    <input type="text">
+    <input type="text" placeholder="Titulo da Tarefa" maxlength="60" formControlName="title">
+    <small>Este campo deve conter entre 3 à 60 caracteres</small>
     <button> Salvar </button>
   </fieldset>
 </form>

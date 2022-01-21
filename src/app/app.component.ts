@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Todo } from 'src/models/todo.model';
 
 @Component({
@@ -10,9 +10,17 @@ import { Todo } from 'src/models/todo.model';
 export class AppComponent {
   public todos: Todo [] = []; // lista de qualquer tipo (any) vazia
   public title: string = 'minhas tarefas';
-  public form: FormGroup | undefined;
+  public form!: FormGroup;// '!' Maneira de falar ao compilador que a expressão tem valor diferente de null ou undefined
 
-  constructor() { // 'ctor' para criar de forma automatica 
+  constructor(private fb: FormBuilder) { // 'ctor' para criar de forma automatica 
+    this.form = this.fb.group({ // cria um grupo de formBuild
+      title: ['', Validators.compose([ // é um array com isso abre conchetes []
+        Validators.minLength(3), //caso tenha mais de um validator é necessario usar o COMPOSE
+        Validators.maxLength(60), 
+        Validators.required,
+      ])]
+    })
+    
     this.todos.push(new Todo(1,'acordar', false));
     this.todos.push(new Todo(2,'tomar banho', true));
     this.todos.push(new Todo(3,'comer', false));
