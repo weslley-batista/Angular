@@ -20,11 +20,34 @@ export class AppComponent {
         Validators.required,
       ])]
     })
+    this.loadTarefa();
+    // this.todos.push(new Todo(1,'acordar', false));
+    // this.todos.push(new Todo(2,'tomar banho', true));
+    // this.todos.push(new Todo(3,'comer', false));
     
-    this.todos.push(new Todo(1,'acordar', false));
-    this.todos.push(new Todo(2,'tomar banho', true));
-    this.todos.push(new Todo(3,'comer', false));
-    
+  }
+  add(){
+    const title = this.form.controls['title'].value;
+    const id = this.todos.length + 1;
+    this.todos.push(new Todo(id, title, false));
+    this.saveTarefa();
+    this.clearText();
+  }
+
+  clearText(){
+    this.form.reset();
+  }
+
+  saveTarefa(){
+    const data = JSON.stringify(this.todos); //passar lista para Json
+    sessionStorage.setItem('todos', data); // armazenando o dado
+  }
+
+  loadTarefa(){
+    const dataLoad = sessionStorage.getItem('todos');
+    if(dataLoad!=null){
+      this.todos = JSON.parse(dataLoad);
+    }
   }
   remove(todo: Todo) {
     const index = this.todos.indexOf(todo); //caso não encontre será -1
@@ -32,13 +55,18 @@ export class AppComponent {
     if(index !== -1) { // metodo remover
       this.todos.splice(index, 1); //index a ser removido e quantidade de remoções
     }
+    this.saveTarefa();
   }
 
   markAsDone(todo: Todo){
     todo.done = true;
+    this.saveTarefa();
+  
   }
 
   markAsUndone(todo: Todo){
     todo.done = false; 
+    this.saveTarefa();
+    
   }
 }

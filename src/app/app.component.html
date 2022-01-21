@@ -1,5 +1,14 @@
 <h1>{{title}}</h1> <!-- chaves '{}' duplas para puxar variavel do ts component-->
 
+<form [formGroup]="form">
+  <fieldset>
+    <label> Tarefa </label>
+    <input type="text" placeholder="Titulo da Tarefa" maxlength="60" formControlName="title">
+    <small [hidden]="form.valid">Este campo deve conter entre 3 à 60 caracteres</small>
+    <button [disabled]="form.invalid" (click)="add()"> Salvar </button>
+  </fieldset>
+</form>
+
 <ul>
   <li *ngFor="let todo of todos"> 
     {{todo.id}} {{todo.task}} | 
@@ -8,15 +17,6 @@
     <button (click)="remove(todo)"> Remover </button>
   </li> <!--*ng inicia uma confição (For, If)-->
 </ul>
-
-<form [formGroup]="form">
-  <fieldset>
-    <label> Tarefa </label>
-    <input type="text" placeholder="Titulo da Tarefa" maxlength="60" formControlName="title">
-    <small>Este campo deve conter entre 3 à 60 caracteres</small>
-    <button> Salvar </button>
-  </fieldset>
-</form>
 
 <!--
   tipos de bind (tradução de ações)
