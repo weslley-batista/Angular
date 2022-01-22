@@ -1,9 +1,14 @@
-# ToDo
+# To Do
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.4.
 ## Anotações
 - session storage: Guarda informação enquanto uma aba estiver aberta
 - local storage: Guarda informação de forma permanente
+- site gerador de facivon: https://www.xiconeditor.com/
+## Comandos
+- Criar novo projeto: ng new [nome projeto]
+- Compila e simula aplicação no brower: ng serve -o
+- Compila a aplicação: ng build --prod
  
 ## Development server
 
