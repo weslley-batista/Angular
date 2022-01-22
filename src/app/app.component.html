@@ -1,19 +1,27 @@
-<h1>{{title}}</h1> <!-- chaves '{}' duplas para puxar variavel do ts component-->
+<h1 class="title">{{title}}</h1> <!-- chaves '{}' duplas para puxar variavel do ts component-->
 
-<form [formGroup]="form">
-  <fieldset>
-    <label> Tarefa </label>
-    <input type="text" placeholder="Titulo da Tarefa" maxlength="60" formControlName="title">
-    <small [hidden]="form.valid">Este campo deve conter entre 3 à 60 caracteres</small>
-    <button [disabled]="form.invalid" (click)="add()"> Salvar </button>
-  </fieldset>
-</form>
+<div id="modal" *ngIf="mode=='add'"> <!--Só ira aparecer se o modo for ADD-->
+  <form [formGroup]="form">
+    <fieldset>
+      <label> Tarefa </label >
+      <input type="text" placeholder="Titulo da Tarefa" maxlength="60" formControlName="title">
+      <small [hidden]="form.valid">Este campo deve conter entre 3 à 60 caracteres</small>
+      <p><button [disabled]="form.invalid" (click)="add()" class="button" class="buttonSave"> Salvar </button></p> <!--o <P> "cria" um estaço na visualição css-->
+    </fieldset>
+  </form>  
+</div>
 
-<ul>
+<button class="button" (click)="changeMode('add')" *ngIf="mode=='list'"> 
+  <i class="far fa-plus-square"></i> 
+  Nova Tarefa
+</button>
+<button class="button" (click)="changeMode('list')" *ngIf="mode=='add'"> Cancelar </button>
+
+<ul *ngIf="mode=='list'"> <!--Só ira aparecer se o modo for list-->
   <li *ngFor="let todo of todos"> 
-    {{todo.id}} {{todo.task}} | 
-    <button *ngIf="!todo.done" (click)="markAsDone(todo)"> Concluir </button> |
-    <button *ngIf="todo.done" (click)="markAsUndone(todo)"> Refazer </button> | 
+    {{todo.task}}
+    <button *ngIf="!todo.done" (click)="markAsDone(todo)"> Concluir </button>
+    <button *ngIf="todo.done" (click)="markAsUndone(todo)"> Refazer </button> 
     <button (click)="remove(todo)"> Remover </button>
   </li> <!--*ng inicia uma confição (For, If)-->
 </ul>

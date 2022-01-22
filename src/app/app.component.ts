@@ -8,6 +8,7 @@ import { Todo } from 'src/models/todo.model';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  public mode: String = 'list';
   public todos: Todo [] = []; // lista de qualquer tipo (any) vazia
   public title: string = 'minhas tarefas';
   public form!: FormGroup;// '!' Maneira de falar ao compilador que a expressão tem valor diferente de null ou undefined
@@ -26,6 +27,9 @@ export class AppComponent {
     // this.todos.push(new Todo(3,'comer', false));
     
   }
+  changeMode(mode: String){
+    this.mode = mode;
+  }
   add(){
     const title = this.form.controls['title'].value;
     const id = this.todos.length + 1;
@@ -41,12 +45,15 @@ export class AppComponent {
   saveTarefa(){
     const data = JSON.stringify(this.todos); //passar lista para Json
     sessionStorage.setItem('todos', data); // armazenando o dado
+    this.mode= 'list';
   }
 
   loadTarefa(){
     const dataLoad = sessionStorage.getItem('todos');
     if(dataLoad!=null){
       this.todos = JSON.parse(dataLoad);
+    }else{
+      this.todos = [];
     }
   }
   remove(todo: Todo) {
