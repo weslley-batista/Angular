@@ -1,4 +1,4 @@
-# To Do
+# Angular
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.4.
 ## Anotações
@@ -7,6 +7,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - site gerador de facivon: https://www.xiconeditor.com/
 ## Comandos
 - Criar novo projeto: ng new [nome projeto]
+- Cria um componente: ng g c [nome do compnente] (ng generate component [nome do compnente])
 - Compila e simula aplicação no brower: ng serve -o
 - Compila a aplicação: ng build --prod
  
