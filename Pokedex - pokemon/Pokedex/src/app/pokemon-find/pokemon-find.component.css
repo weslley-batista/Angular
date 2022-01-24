@@ -1,0 +1,41 @@
+fieldset{
+    display: flex;
+    justify-content: center;
+    margin-top:10px;
+    border: none;
+}
+
+fieldset>button{
+    cursor: pointer;
+
+    border: none;
+    border-radius:30px;
+    padding: 10px;
+    margin: 0px 5px 0px 5px;
+
+    background-color: #3DDC97;
+    color: #fcfcfc;
+    font-size: 1em;
+    /* padding: 10px;
+    border: 1px solid white; */
+}
+fieldset>button:hover{
+    transition: 0.3s;
+    box-shadow: 3px 3px 0px 0px #3359EC;
+}
+fieldset>input{
+    width:30%;
+    margin-right: 10px;
+    
+    border-top-right-radius: 15px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 5px;
+
+    line-height:30px;
+    font-size:1.3em;
+    color:gray;
+
+    padding:5px;
+    box-shadow: 3px 3px 0px 0px #3359EC;
+}
